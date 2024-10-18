@@ -17,23 +17,23 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.neo4j.gds.beta.pregel;
+package org.neo4j.gds.pricesteiner;
 
-import java.util.OptionalLong;
+ class ClusterMoatPair {
 
-public interface Messenger<ITERATOR extends Messages.MessageIterator> {
+    private long  cluster;
+    private double totalMoat;
 
-    void initIteration(int iteration);
-
-    void sendTo(long sourceNodeId, long targetNodeId, double message);
-
-    ITERATOR messageIterator();
-
-    void initMessageIterator(ITERATOR messageIterator, long nodeId, boolean isFirstIteration);
-
-    default OptionalLong sender(long nodeId) {
-        return OptionalLong.empty();
+    void assign(long cluster, double totalMoat){
+        this.cluster = cluster;
+        this.totalMoat = totalMoat;
     }
 
-    void release();
+    long cluster(){
+        return cluster;
+    }
+
+    double totalMoat(){
+        return  totalMoat;
+    }
 }
